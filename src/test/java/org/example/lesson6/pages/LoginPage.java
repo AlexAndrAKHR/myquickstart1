@@ -1,5 +1,6 @@
 package org.example.lesson6.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,7 +28,7 @@ public class LoginPage extends BasePage{
         super(webDriver);
     }
 
-
+    @Step("Авторизоваться используя {login} {password}")
     public MainPage login(String login, String password)  {
         By authFormLocator = By.xpath("//form[contains(@class,'auth-form')]");
         new WebDriverWait(webDriver, 10).until(ExpectedConditions.presenceOfElementLocated(authFormLocator));
@@ -38,6 +39,7 @@ public class LoginPage extends BasePage{
         return new MainPage(webDriver);
     }
 
+    @Step("Проверить отображение ошибки {errorText}")
     public void checkError(String errorText) {
         assertThat (errorSpan.getText())
                 .isEqualTo(errorText);

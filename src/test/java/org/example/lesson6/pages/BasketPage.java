@@ -1,5 +1,6 @@
 package org.example.lesson6.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -16,6 +17,7 @@ public class BasketPage extends BasePage{
         super(webDriver);
     }
 
+    @Step("Проверить,что продукт в корзине соответствует {productNames}")
     public void checkProductsInCart(String... productNames) {
         List<String> actualProducts = webDriver.findElements(By.xpath("//div[contains(@class,'basket_page-products_item-title')]"))
                 .stream()
